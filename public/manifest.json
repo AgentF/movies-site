@@ -1,19 +1,24 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Movies",
+  "name": "Movies Site",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "701552_cinema_64x64.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "701552_cinema_128x128.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "128x128"
     },
     {
-      "src": "logo512.png",
+      "src": "701552_cinema_256x256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "701552_cinema_512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
