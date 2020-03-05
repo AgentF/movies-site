@@ -1,0 +1,83 @@
+li.movie-preview {
+  position: relative;
+  display: grid;
+  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 5px 2px;
+  margin-bottom: 20px;
+}
+li.movie-preview:hover div.movie-detail-hidden {
+  visibility: visible;
+  height: 340px;
+}
+
+a.movie-link {
+  text-decoration: none;
+}
+h5.movie-download {
+  text-transform: capitalize;
+}
+img.movie-image {
+  height: 345px;
+  width: 230px;
+  justify-self: center;
+  border-radius: 3px;
+  border: solid 3px #777;
+}
+div.movie-detail-hidden {
+  --paddingSize: 5px;
+  --borderRadiusSize: 3px;
+  --leftOffset: 7px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  top: 5px;
+  left: var(--leftOffset);
+  border-radius: var(--borderRadiusSize);
+  transition: ease-in-out 0.3s;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: var(--paddingSize);
+  height: 0;
+  width: calc(
+    100% - var(--leftOffset) - calc(var(--paddingSize) * 2) -
+      calc(var(--borderRadiusSize) * 2)
+  );
+  overflow: hidden;
+  visibility: hidden;
+}
+span.movie-synopsis {
+  height: 100%;
+  overflow: auto;
+  margin-bottom: 5px;
+}
+div.movie-details-footer {
+  display: flex;
+  justify-content: space-between;
+}
+span.movie-rating {
+}
+span.movie-runtime {
+}
+h3.movie-title {
+  margin: 10px 0 5px 0px;
+  align-self: center;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 5px;
+}
+div.movie-genres {
+  display: flex;
+  flex-wrap: wrap;
+}
+h6.movie-genre {
+  margin: 0;
+  color: #333;
+  margin-right: 5px;
+  padding: 1px 3px;
+  background-color: rgba(0, 0, 0, 0.3);
+  align-self: center;
+  cursor: pointer;
+}

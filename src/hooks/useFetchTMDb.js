@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { TMDb } from '../Services/TMDbConfig';
 
 function useFetchTMDb(endpoint) {
+  const [page, setPage] = useState(0);
   const [options, setOptions] = useState(null);
   const [data, setData] = useState(null);
   const [statusMessage, setStatusMessage] = useState(null);
@@ -14,31 +15,30 @@ function useFetchTMDb(endpoint) {
       setIsLoading(true);
       setStatusMessage('Fetching data...');
       try {
-        const queryOptions = options
-          ? Object.keys(options).reduce(
-              // eslint-disable-next-line no-param-reassign
-              (acc, option) => (acc += `/${options[option]}`),
-              endpoint,
-            )
-          : endpoint;
-        const rawResponse = await TMDb.get(
-          `${queryOptions}&${process.env.REACT_APP_TMDb_API_Key}`,
-        );
+        let query = `${endpoint}/`;
+        if (Array.isArray(options)) {
+          query += options.join('/');
+        }
+        query += `?api_key=${process.env.REACT_APP_TMDb_API_Key}`;
+        if (endpoint === 'trending' && page) {
+          query += `&page=${page}`;
+        }
+        const rawResponse = await TMDb.get(query);
         const response = rawResponse.data;
 
-        setData(response.data);
+        setData(response);
         setIsLoading(false);
-        setStatusMessage(response.statusMessage);
+        setStatusMessage('Succesfully Fetched!');
       } catch (error) {
         setStatusMessage(`Data fetch failed due to: ${error}`);
         setThereIsAnError(true);
       }
     };
-    if (endpoint) {
+    if (endpoint && Array.isArray(options)) {
       fetchData();
     }
-  }, [options]);
-  return [data, statusMessage, isLoading, thereIsAnError, setOptions];
+  }, [endpoint, page, options]);
+  return [data, statusMessage, isLoading, thereIsAnError, setOptions, setPage];
 }
 
 export default useFetchTMDb;
